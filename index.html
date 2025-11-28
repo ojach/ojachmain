@@ -195,7 +195,7 @@ function updateEffectTable(){
     const uncommon = d.uncommon && d.uncommon.set4 ? fmt(d.uncommon.set4) : '';
     const rare4 = d.rare && d.rare.set4 ? fmt(d.rare.set4) : ''
     const leg4 = d.legendary && d.legendary.set4 ? fmt(d.legendary.set4) : '';
-    html += '<tr><td>'+escapeHtml(name)+'</td><td>'+escapeHtml(uncommon)+'</td><td>'+escapeHtml(rare3+(rare4?(' / '+rare4):''))+'</td><td>'+escapeHtml((leg2?leg2+' / ':'')+(leg3?leg3+' / ':'')+(leg4?leg4:''))+'</td></tr>';
+    html += '<tr><td>'+escapeHtml(name)+'</td><td>'+escapeHtml(uncommon)+'</td><td>'+escapeHtml(rare4)+'</td><td>'+escapeHtml(leg4)+'</td></tr>';
   });
   html += '</tbody></table>';
   effectTableArea.innerHTML = html;
