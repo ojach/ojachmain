@@ -36,6 +36,9 @@
     .result{height:auto;max-height:50vh}
     .card{padding:10px}
     label.slot-label{min-width:72px}
+.free-note {
+  margin-top: 20px;
+}
   }
 </style>
 </head>
@@ -85,6 +88,7 @@
   <label for="freeText">フリーテキスト：</label><br>
   <textarea id="freeText" rows="5" style="width:100%;" placeholder="メモや追加情報を書けます"></textarea>
 </div>
+  
 <script>
 /* ========================
    データ：素材 × ランク別セット効果（編集しやすく）
@@ -473,9 +477,6 @@ buildForm();
 /* 初期更新 */
 updateAll();
 
-.free-note {
-  margin-top: 20px;
-    }
 </script>
 </body>
 </html>
