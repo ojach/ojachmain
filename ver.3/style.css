@@ -65,6 +65,18 @@ body {
   overflow: auto;
 }
 
+.slot-row {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1.4fr) 90px repeat(3, minmax(0, 1.2fr));
+  gap: 4px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.slot-label {
+  font-weight: 600;
+}
+
 select {
   width: 100%;
   padding: 4px 6px;
@@ -150,6 +162,18 @@ select {
 .rarity-RARE { background: #e6efff; }
 .rarity-LEG { background: #fff4c2; }
 
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  #slotArea {
+    max-height: none;
+  }
+  .top-controls {
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+}
 .slot-row {
   border-bottom: 1px solid #ddd;
   padding: 6px 0;
