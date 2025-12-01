@@ -273,3 +273,29 @@ select {
     grid-template-columns: 55px 1fr 1fr 1fr;
   }
 }
+/* 上段 */
+.slot-top {
+  display: grid;
+  grid-template-columns: 60px 1fr 70px;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 下段：空カラム + 3ストーン */
+.slot-bottom {
+  display: grid;
+  grid-template-columns: 60px 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+/* 空白カラム */
+.slot-bottom-spacer {
+  width: 100%;
+}
+
+/* select が暴れないように */
+.slot-bottom select,
+.slot-top select {
+  width: 100%;
+  min-width: 0;
+}
