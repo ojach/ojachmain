@@ -18,7 +18,7 @@ const RARITY_LABEL_JP = {
   "legendary": "レジェンダリー"
 };
 function slotNameFromRow(row){
-  return row ? row.querySelector(".slot-label")?.textContent.trim() : "";
+  return row?.querySelector(".slot-label")?.textContent.trim() || "";
 }
 
 function escapeHtml(s){
@@ -141,7 +141,7 @@ function buildSlots(){
 function handleChange(e){
   const row = e.target.closest(".slot-row");
 
-  // ▼ 同一スロット内の重複禁止（←今あるやつ）
+  // ▼ 同一スロット内の重複禁止
   if (row){
     const stoneSelects = Array.from(row.querySelectorAll(".stone-select"));
     const chosen = stoneSelects.map(s=>s.value).filter(v=>v);
@@ -154,37 +154,17 @@ function handleChange(e){
     });
   }
 
-  // ▼ A1：武器のパワーストーン → 他全部へ「最初だけ」自動反映
-  if (!initialStoneSyncDone && slotNameFromRow(row) === "武器") {
-    syncWeaponStonesToAllSlots();
+  // ▼ A1：武器の変更は「最初だけ」全体へ同期
+  if (slotNameFromRow(row) === "武器" && !initialStoneSyncDone) {
+    syncWeaponStonesToAllSlots();  // ← 最初の1回だけ同期
     initialStoneSyncDone = true;
   }
 
   updateAll();
 }
-function autoFillStonesFromWeapon(v1, v2, v3){
-  const rows = Array.from(slotArea.querySelectorAll(".slot-row"));
 
-  rows.forEach(row=>{
-    const label = row.querySelector(".slot-label").innerText;
-    if (label === "武器") return; // 武器は元データ
 
-    const selects = row.querySelectorAll(".stone-select");
-    if (v1) selects[0].value = v1;
-    if (v2) selects[1].value = v2;
-    if (v3) selects[2].value = v3;
-
-    // スロット内の重複解除・再計算
-    const chosen = [v1, v2, v3].filter(v=>v);
-    selects.forEach(sel=>{
-      const cur = sel.value;
-      Array.from(sel.options).forEach(opt=>{
-        if (!opt.value) return;
-        opt.disabled = (opt.value !== cur && chosen.includes(opt.value));
-      });
-    });
-  });
-}
+// ▼ 武器の初期ストーンを全スロットへコピー（最初だけ）
 function syncWeaponStonesToAllSlots(){
   const rows = Array.from(slotArea.querySelectorAll(".slot-row"));
   const weaponRow = rows.find(r => slotNameFromRow(r) === "武器");
@@ -194,16 +174,17 @@ function syncWeaponStonesToAllSlots(){
     .map(s=>s.value);
 
   rows.forEach(row=>{
-    if (slotNameFromRow(row) === "武器") return; // 武器はスキップ
+    if (slotNameFromRow(row) === "武器") return;
 
-    const stones = row.querySelectorAll(".stone-select");
-    stones.forEach((sel, i)=>{
+    const sels = Array.from(row.querySelectorAll(".stone-select"));
+    sels.forEach((sel, i)=>{
       if (!sel.value && weaponStones[i]) {
         sel.value = weaponStones[i];
       }
     });
   });
 }
+
 // 盾ON/OFF
 useShieldCheck.addEventListener("change", ()=>{
   if (useShieldCheck.checked){
