@@ -65,14 +65,6 @@ body {
   overflow: auto;
 }
 
-.slot-row {
-  display: grid;
-  grid-template-columns: 70px minmax(0, 1.4fr) 90px repeat(3, minmax(0, 1.2fr));
-  gap: 4px;
-  align-items: center;
-  font-size: 13px;
-}
-
 .slot-label {
   font-weight: 600;
 }
