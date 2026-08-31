@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>laos | 空のアトリエ - Demo</title>
+
+  <!-- 1P1A / OJapp PWA Code -->
+  <script src="https://ojapp.app/js/ojapp_1p1a.js"></script>
+
+  <style>
+    /* 全体リセット & 空のアトリエ風世界観 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #ffffff;
+      color: #333333;
+      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", YuGothic, "ヒラギノ角ゴ ProN W3", sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    /* ヘッダー風のタイトル */
+    header {
+      margin-top: 12px;
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 1.5rem;
+      font-style: italic;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: #111;
+    }
+
+    /* メインコンテンツ（中央1枚の展示枠） */
+    main {
+      width: 100%;
+      max-width: 480px; /* スマホで見やすい幅 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* 正方形の台紙風カード */
+    .artwork-card {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background-color: #f7f7f7; /* 薄いグレーの背景 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20%; /* 正方形の中央に小さめに配置する余白 */
+      border-radius: 4px;
+    }
+
+    .artwork-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* 縦横比を維持して中央配置 */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); /* うっすら影を付けて絵画感 */
+    }
+
+    /* キャプション（作品名や補足を入れる用） */
+    .caption {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #666666;
+      letter-spacing: 0.08em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="title">laos</div>
+  </header>
+
+  <main>
+    <div class="artwork-card">
+      <!-- 相手の作品画像URL（PNGまたはJPG）を直指定、または直リンク -->
+      <img 
+        class="artwork-img" 
+        src="https://soranoatelier.com/painting/image/laos_2019/01.jpg" 
+        alt="laos artwork"
+      >
+    </div>
+    <div class="caption">
+      laos #01
+    </div>
+  </main>
+
+</body>
+</html>
+
